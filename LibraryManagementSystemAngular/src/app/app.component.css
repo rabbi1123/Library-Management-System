@@ -1,0 +1,38 @@
+mat-sidenav-container,mat-sidenav-content,mat-sidenav {
+    
+    height: 100vh;
+}
+mat-sidenav{
+    background: linear-gradient(rgba(0 , 0 , 0 , .7),rgba(0 , 0 , 0 , .9)), url("../assets/image/img1.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 5px 7px 25px #999;
+    width: 200px;
+}
+mat-toolbar {
+    background-color: #625E5E;
+}
+main {
+    /* padding: 10px; */
+    width: 100vh;
+    overflow: hidden;
+}
+
+.bo {
+    color: white;
+    text-decoration: none;
+}
+.co {
+    border: none;
+    padding: 5px;
+    font-size: 50;
+    background-color: white;
+    color: black;
+}
+.but {
+    font-size: 20px;
+}
+.mar{
+    margin-left: -15px;
+}

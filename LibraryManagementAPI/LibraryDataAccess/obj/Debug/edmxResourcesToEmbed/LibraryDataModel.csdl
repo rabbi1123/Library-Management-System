@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_ID" />
+    </Key>
+    <Property Name="Admin_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BookList">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ISBN_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Author_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Publisher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Publish_Date" Type="DateTime" Precision="0" />
+    <Property Name="Category" Type="Int32" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_BookList_Category" FromRole="BookList" ToRole="Category" />
+    <NavigationProperty Name="BorrowBookLists" Relationship="Self.FK_BorrowBookList_BookList" FromRole="BookList" ToRole="BorrowBookList" />
+  </EntityType>
+  <EntityType Name="BorrowBookList">
+    <Key>
+      <PropertyRef Name="Borrow_book_ID" />
+    </Key>
+    <Property Name="Borrow_book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Book_List" Type="Int32" />
+    <Property Name="Student_List" Type="Int32" />
+    <Property Name="Issue_date" Type="DateTime" Precision="0" />
+    <Property Name="Return_Date" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BookList" Relationship="Self.FK_BorrowBookList_BookList" FromRole="BorrowBookList" ToRole="BookList" />
+    <NavigationProperty Name="StudentList" Relationship="Self.FK_BorrowBookList_StudentList" FromRole="BorrowBookList" ToRole="StudentList" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Category_ID" />
+    </Key>
+    <Property Name="Category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BookLists" Relationship="Self.FK_BookList_Category" FromRole="Category" ToRole="BookList" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="StudentLists" Relationship="Self.FK_StudentList_Course" FromRole="Course" ToRole="StudentList" />
+  </EntityType>
+  <EntityType Name="StudentList">
+    <Key>
+      <PropertyRef Name="Student_ID" />
+    </Key>
+    <Property Name="Student_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="course" Type="Int32" />
+    <NavigationProperty Name="BorrowBookLists" Relationship="Self.FK_BorrowBookList_StudentList" FromRole="StudentList" ToRole="BorrowBookList" />
+    <NavigationProperty Name="Course1" Relationship="Self.FK_StudentList_Course" FromRole="StudentList" ToRole="Course" />
+  </EntityType>
+  <Association Name="FK_BookList_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="BookList" Type="Self.BookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Category_ID" />
+      </Principal>
+      <Dependent Role="BookList">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookList_BookList">
+    <End Role="BookList" Type="Self.BookList" Multiplicity="0..1" />
+    <End Role="BorrowBookList" Type="Self.BorrowBookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookList">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookList">
+        <PropertyRef Name="Book_List" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookList_StudentList">
+    <End Role="StudentList" Type="Self.StudentList" Multiplicity="0..1" />
+    <End Role="BorrowBookList" Type="Self.BorrowBookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentList">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookList">
+        <PropertyRef Name="Student_List" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentList_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="StudentList" Type="Self.StudentList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="StudentList">
+        <PropertyRef Name="course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="BookLists" EntityType="Self.BookList" />
+    <EntitySet Name="BorrowBookLists" EntityType="Self.BorrowBookList" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="StudentLists" EntityType="Self.StudentList" />
+    <AssociationSet Name="FK_BookList_Category" Association="Self.FK_BookList_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="BookList" EntitySet="BookLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookList_BookList" Association="Self.FK_BorrowBookList_BookList">
+      <End Role="BookList" EntitySet="BookLists" />
+      <End Role="BorrowBookList" EntitySet="BorrowBookLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookList_StudentList" Association="Self.FK_BorrowBookList_StudentList">
+      <End Role="StudentList" EntitySet="StudentLists" />
+      <End Role="BorrowBookList" EntitySet="BorrowBookLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentList_Course" Association="Self.FK_StudentList_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="StudentList" EntitySet="StudentLists" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

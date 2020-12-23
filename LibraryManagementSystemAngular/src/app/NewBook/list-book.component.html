@@ -1,0 +1,73 @@
+<div class="ml-5 mr-10 my-2 head">
+  <button color="accent" mat-raised-button (click)="openDialog()"><mat-icon class="pr-5">grade</mat-icon>New Book</button>
+  <h2 class="display-3">Book List</h2>
+  <div></div>
+</div>
+<mat-divider></mat-divider>
+
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search By Book" style="width:300px" [(ngModel)]="SearchBook">
+</div>
+
+<div class="table-responsive m-5">
+    <table class="table" *ngIf="filteredBook && filteredBook.length">
+        <thead class="thead-dark">
+          <tr class="bg-primary">
+            <th>ISBN Number</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of filteredBook">
+            <td>{{book.Book_ID}}</td>
+            <td>{{book.Author}}</td>
+            <td>{{book.Title}}</td>
+            <td>{{book.BookCategory.Category_Name}}</td>
+            <td>
+              <div class="btn-toolbar">
+                <button class="btn btn-primary" (click)="editButtonClick(book.Book_ID)">Edit</button>
+                <button class="btn btn-primary" (click)="viewButtonClick(book)">View</button>
+                <button class="btn btn-primary" (click)="deleteButtonClick(book.Book_ID)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+
+<!-- <div class="form-group">
+  <input type="text" class="form-control" placeholder="Search By Book" style="width:300px" [(ngModel)]="SearchBook">
+</div>
+<br />
+<div class="table-responsive">
+  <table class="table table-bordered" *ngIf="filteredBook && filteredBook.length">
+    <thead>
+      <tr class="bg-primary">
+        <th>ISBN Number</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of filteredBook">
+        <td>{{book.Book_ID}}</td>
+        <td>{{book.Author}}</td>
+        <td>{{book.Title}}</td>
+        <td>{{book.BookCategory.Category_Name}}</td>
+        <td>
+          <div class="btn-toolbar">
+            <button class="btn btn-primary" (click)="editButtonClick(book.Book_ID)">Edit</button>
+            <button class="btn btn-primary" (click)="viewButtonClick(book.Book_ID)">View</button>
+            <button class="btn btn-primary" (click)="deleteButtonClick(book.Book_ID)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->

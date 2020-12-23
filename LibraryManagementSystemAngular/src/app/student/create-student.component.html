@@ -1,0 +1,193 @@
+<!-- <form #newStudentForm="ngForm" [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{pageTitle}}</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.firstName}">
+        <label class="col-sm-2 control-label" for="firstName">First Name</label>
+        <div class="col-sm-8">
+          <input id="firstName" formControlName="firstName" type="text" class="form-control" (blur)="logValidationErrors()">
+          <span class="help-block" *ngIf="formErrors.firstName">
+            {{formErrors.firstName}}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.lastName}">
+        <label class="col-sm-2 control-label" for="lastName">Last Name</label>
+        <div class="col-sm-8">
+          <input id="lastName" formControlName="lastName" type="text" class="form-control" (blur)="logValidationErrors()">
+          <span class="help-block" *ngIf="formErrors.lastName">
+                {{formErrors.lastName}}
+            </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Contact Preference</label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" value="email" formControlName="contactPreference">Email
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="phone" formControlName="contactPreference">Phone
+          </label>
+        </div>
+      </div>
+
+      <div formGroupName="emailGroup">
+        <div class="form-group" [ngClass]="{'has-error':formErrors.email}">
+          <label class="col-sm-2 control-label" for="email">Email</label>
+          <div class="col-sm-8">
+            <input id="email" formControlName="email" type="text" class="form-control" (blur)="logValidationErrors()">
+            <span class="help-block" *ngIf="formErrors.email">
+              {{formErrors.email}}
+          </span>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':formErrors.confirmEmail || formErrors.emailGroup}">
+          <label class="col-sm-2 control-label" for="confirmEmail">Confirm Email</label>
+          <div class="col-sm-8">
+            <input id="confirmEmail" formControlName="confirmEmail" type="text" class="form-control" (blur)="logValidationErrors()">
+            <span class="help-block" *ngIf="formErrors.confirmEmail || formErrors.emailGroup">
+              {{formErrors.confirmEmail ? formErrors.confirmEmail : formErrors.emailGroup}}
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.phone}">
+        <label class="col-sm-2 control-label" for="phone">Phone</label>
+        <div class="col-sm-8">
+          <input id="phone" formControlName="phone" type="text" class="form-control" (blur)="logValidationErrors()">
+          <span class="help-block" *ngIf="formErrors.phone">
+            {{formErrors.phone}}
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.course_ID}">
+        <label for="course">Course</label>
+        <select name="course" id="course" formControlName="course_ID" class="form-control" (blur)="logValidationErrors()">
+          <option *ngFor="let c of studentCourse" [value]="c.StudentCourse_ID">{{c.Title}}</option>
+        </select>
+        <span class="help-block" *ngIf="formErrors.course_ID">
+          {{formErrors.course_ID}}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="photo">Photo</label>
+        <div class="col-sm-8">
+          <input id="photo" type="file" (change)="fileSelected($event.target.files)">
+          
+        </div>
+      </div>
+
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" type="submit" [disabled]="studentForm.invalid">Save</button>
+    </div>
+  </div>
+</form> -->
+
+
+
+<form #newStudentForm="ngForm" [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <h3 mat-dialog-title>{{pageTitle}}</h3>
+    
+    <mat-dialog-content class="mat-typography">
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.firstName}">
+        <label class="col-sm-2 control-label" for="firstName">First Name</label>
+        <div class="col-sm-8">
+          <input id="firstName" formControlName="firstName" type="text" class="form-control" (blur)="logValidationErrors()">
+          <span class="help-block" *ngIf="formErrors.firstName">
+            {{formErrors.firstName}}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.lastName}">
+        <label class="col-sm-2 control-label" for="lastName">Last Name</label>
+        <div class="col-sm-8">
+          <input id="lastName" formControlName="lastName" type="text" class="form-control" (blur)="logValidationErrors()">
+          <span class="help-block" *ngIf="formErrors.lastName">
+                {{formErrors.lastName}}
+            </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Contact Preference</label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" value="email" formControlName="contactPreference">Email
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="phone" formControlName="contactPreference">Phone
+          </label>
+        </div>
+      </div>
+
+      <div formGroupName="emailGroup">
+        <div class="form-group" [ngClass]="{'has-error':formErrors.email}">
+          <label class="col-sm-2 control-label" for="email">Email</label>
+          <div class="col-sm-8">
+            <input id="email" formControlName="email" type="text" class="form-control" (blur)="logValidationErrors()">
+            <span class="help-block" *ngIf="formErrors.email">
+              {{formErrors.email}}
+          </span>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':formErrors.confirmEmail || formErrors.emailGroup}">
+          <label class="col-sm-2 control-label" for="confirmEmail">Confirm Email</label>
+          <div class="col-sm-8">
+            <input id="confirmEmail" formControlName="confirmEmail" type="text" class="form-control" (blur)="logValidationErrors()">
+            <span class="help-block" *ngIf="formErrors.confirmEmail || formErrors.emailGroup">
+              {{formErrors.confirmEmail ? formErrors.confirmEmail : formErrors.emailGroup}}
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.phone}">
+        <label class="col-sm-2 control-label" for="phone">Phone</label>
+        <div class="col-sm-8">
+          <input id="phone" formControlName="phone" type="text" class="form-control" (blur)="logValidationErrors()">
+          <span class="help-block" *ngIf="formErrors.phone">
+            {{formErrors.phone}}
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':formErrors.course_ID}">
+        <label for="course">Course</label>
+        <select name="course" id="course" formControlName="course_ID" class="form-control" (blur)="logValidationErrors()">
+          <option *ngFor="let c of studentCourse" [value]="c.StudentCourse_ID">{{c.Title}}</option>
+        </select>
+        <span class="help-block" *ngIf="formErrors.course_ID">
+          {{formErrors.course_ID}}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="photo">Photo</label>
+        <div class="col-sm-8">
+          <input id="photo" type="file" (change)="fileSelected($event.target.files)">
+          
+        </div>
+      </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-raised-button color="warn" class="mr-2" (click)="closeDialog()" mat-dialog-close>Cancel</button>        
+      <button mat-raised-button color="primary" type="submit" [disabled]="studentForm.invalid">Save</button>
+    </mat-dialog-actions>
+  
+</form>

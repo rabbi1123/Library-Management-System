@@ -1,0 +1,69 @@
+{
+  "Students": [
+    {
+      "id": 1,
+      "First_Name": "Md. Mosfikur",
+      "Last_Name": "Rahman",
+      "contactPreference": "email",
+      "email": "Mushfikur80@gmail.com",
+      "confirmEmail": "Mushfikur80@gmail.com",
+      "phone": "564654654"
+    },
+    {
+      "id": 3,
+      "First_Name": "poddar15",
+      "Last_Name": "saha14",
+      "contactPreference": "phone",
+      "email": "poddar14@gmail.com",
+      "confirmEmail": "poddar14@gmail.com",
+      "phone": "987449844"
+    },
+    {
+      "id": 6,
+      "First_Name": "midu2",
+      "Last_Name": "jhuy",
+      "contactPreference": "email",
+      "email": "m@gmail.com",
+      "confirmEmail": "m@gmail.com",
+      "phone": "1234"
+    }
+  ],
+  "BookCategory": [
+    {
+      "id": 1,
+      "CategoryName": "Science2"
+    }
+  ],
+  "BookList": [
+    {
+      "id": 1,
+      "title": "padma5",
+      "author": "humayon"
+    },
+    {
+      "id": 2,
+      "title": "lota6",
+      "author": "humayon2"
+    },
+    {
+      "id": 3,
+      "title": "kolu",
+      "author": "jodu"
+    },
+    {
+      "id": 9,
+      "title": "padma",
+      "author": "onathg"
+    }
+  ],
+  "StudentCourse": [
+    {
+      "id": 1,
+      "title": "Math2"
+    },
+    {
+      "id": 2,
+      "title": "zoology"
+    }
+  ]
+}

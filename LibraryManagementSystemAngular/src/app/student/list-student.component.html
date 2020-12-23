@@ -1,0 +1,93 @@
+<!-- <div class="form-group">
+  <input type="text" class="form-control" placeholder="Search By Student" style="width:300px" [(ngModel)]="SearchStudent">
+</div>
+<br />
+<div class="table-responsive">
+  <table class="table table-bordered" *ngIf="students && students.length">
+    <thead>
+      <tr class="bg-primary">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Contact Preference</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Photo</th>
+        <th>Course</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of filteredStudent">
+        <td>{{student.First_Name}}</td>
+        <td>{{student.Last_Name}}</td>
+        <td>{{student.ContactPreference}}</td>
+        <td>{{student.Email}}</td>
+        <td>{{student.Phone}}</td>
+        <ng-template [ngIf]="student.Photo !== null" [ngIfElse]="notimage">
+          <td><img src="{{'data:image/png;base64,'+ student.Photo}}" width="100" height="100" /></td>            
+        </ng-template>
+        <ng-template #notimage>
+          <td>No Image</td>
+        </ng-template>
+        <td>{{student.StudentCourse.Title}}</td>
+        <td>
+            <div class="btn-toolbar">
+                <button class="btn btn-primary" (click)="editButtonClick(student.Student_ID)">Edit</button>
+                <button class="btn btn-primary" (click)="viewButtonClick(student.Student_ID)">View</button>
+                <button class="btn btn-primary" (click)="deleteButtonClick(student.Student_ID)">Delete</button>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<div class="ml-5 mr-10 my-2 head">
+  <button color="accent" mat-raised-button (click)="openDialog()"><mat-icon class="pr-5">grade</mat-icon>New Student</button>
+  <h2 class="display-3">Student List</h2>
+  <div></div>
+</div>
+<mat-divider></mat-divider>
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search By Student" style="width:300px" [(ngModel)]="SearchStudent">
+</div>
+
+<div class="table-responsive m-5">
+  <table class="table" *ngIf="students && students.length">
+    <thead class="thead-dark">
+      <tr class="bg-primary">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Contact Preference</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Photo</th>
+        <th>Course</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of filteredStudent">
+        <td>{{student.First_Name}}</td>
+        <td>{{student.Last_Name}}</td>
+        <td>{{student.ContactPreference}}</td>
+        <td>{{student.Email}}</td>
+        <td>{{student.Phone}}</td>
+        <ng-template [ngIf]="student.Photo !== null" [ngIfElse]="notimage">
+          <td><img src="{{'data:image/png;base64,'+ student.Photo}}" width="100" height="100" /></td>            
+        </ng-template>
+        <ng-template #notimage>
+          <td>No Image</td>
+        </ng-template>
+        <td>{{student.StudentCourse.Title}}</td>
+        <td>
+            <div class="btn-toolbar">
+                <button class="btn btn-primary" (click)="editButtonClick(student.Student_ID)">Edit</button>
+                <button class="btn btn-primary" (click)="viewButtonClick(student)">View</button>
+                <button class="btn btn-primary" (click)="deleteButtonClick(student.Student_ID)">Delete</button>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

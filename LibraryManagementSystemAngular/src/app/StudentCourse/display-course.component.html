@@ -1,0 +1,44 @@
+<!-- <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{course.StudentCourse_ID}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-6">
+          Course ID
+        </div>
+        <div class="col-xs-6">
+          : {{course.StudentCourse_ID}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Course Title
+        </div>
+        <div class="col-xs-6">
+          : {{course.Title}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-primary" (click)="viewStudentCourse()">View</button>
+    <button class="btn btn-primary" (click)="editStudentCourse()">Edit</button>
+    <span *ngIf="confirmDelete">
+      <span>Are you sure you want to Delete?</span>
+      <button class="btn btn-danger" (click)="deleteStudentCourse()">Yes</button>
+      <button class="btn btn-primary" (click)="confirmDelete=false">No</button>
+    </span>
+    <button *ngIf="!confirmDelete" class="btn btn-danger" (click)="confirmDelete=true">Delete</button>
+  </div>
+</div> -->
+
+<td>
+    {{course.Title}}
+  </td>
+  <td>
+      <button mat-raised-button color="primary" (click)="editStudentCourse()">Edit</button>
+      <button mat-raised-button color="primary" (click)="viewStudentCourse()">View</button>
+      <button mat-raised-button color="primary" (click)="deleteStudentCourse()">Delete</button>
+  </td>

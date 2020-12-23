@@ -1,0 +1,47 @@
+<!-- <form #courseForm="ngForm" (ngSubmit)="saveCourse()">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{panelTitle}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group"
+      [class.has-error]="title.invalid && title.touched"
+      [class.has-success]="title.valid">
+        <label for="title" class="control-label">Course Title</label>
+        <input required id="title" name="title" [(ngModel)]="studentcourse.Title" type="text" class="form-control" 
+        #title ="ngModel">
+        <span class="help-block" *ngIf="title.invalid && title.touched">
+          Course Title is Required.
+        </span>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="courseForm.invalid">Save</button>
+  </div>
+</div>
+</form> -->
+
+
+<form #courseForm="ngForm" (ngSubmit)="saveCourse()">
+    <h3 mat-dialog-title>{{panelTitle}}</h3>
+      
+    <mat-dialog-content class="mat-typography">
+
+        <mat-form-field
+          [class.has-error]="title.invalid && title.touched"
+          [class.has-success]="title.valid">
+            <mat-label for="title">Course Title</mat-label>
+            <input matInput required id="title" name="title" [(ngModel)]="studentcourse.Title" type="text" 
+            #title ="ngModel">
+            <!-- <span class="help-block" *ngIf="title.invalid && title.touched">
+              Course Title is Required.
+            </span> -->
+        </mat-form-field>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button color="warn" class="mr-2" (click)="closeDialog()" mat-dialog-close>Cancel</button>        
+      <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid">Save</button>
+    </mat-dialog-actions>
+    
+</form>

@@ -1,0 +1,144 @@
+<!-- 
+<form [formGroup]="borrowBookForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{pageTitle}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group" [ngClass]="{'has-error':formErrors.Student_ID}">
+        <label for="student">Student</label>
+        <select name="student" id="student" formControlName="Student_ID" class="form-control" (blur)="logValidationErrors()">
+          <option *ngFor="let s of Students" [value]="s.Student_ID">{{s.First_Name}}</option>
+        </select>
+        <span class="help-block" *ngIf="formErrors.Student_ID">
+          {{formErrors.Student_ID}}
+        </span>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':formErrors.CurrentDate}">
+        <label for="currentDate">Current Date</label>
+        <input id="currentDate" name="currentDate" formControlName="CurrentDate" type="text" bsDatepicker class="form-control" readonly
+          (blur)="logValidationErrors()">
+        <span class="help-block" *ngIf="formErrors.CurrentDate">
+          {{formErrors.CurrentDate}}
+        </span>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':formErrors.ReturnDate}">
+        <label for="returnDate">Return Date</label>
+        <input id="returnDate" name="returnDate" formControlName="ReturnDate" type="text" bsDatepicker class="form-control" (blur)="logValidationErrors()">
+        <span class="help-block" *ngIf="formErrors.ReturnDate">
+          {{formErrors.ReturnDate}}
+        </span>
+      </div>
+
+      <div class="well">
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-4">
+            <button type="button" class="btn btn-primary" (click)="addBookButtonClick()" [disabled]="borrowBookForm.get('BorrowBookDetails').invalid">
+              Add Book
+            </button>
+          </div>
+        </div>
+
+        <div formArrayName="BorrowBookDetails" *ngFor="let book of borrowBookForm.get('BorrowBookDetails').controls; let i = index">
+          <hr *ngIf="i>0">
+          <div [formGroupName]="i">
+            <div class="form-group" [ngClass]="{'has-error': book.get('Book_ID').invalid && book.get('Book_ID').touched }">
+              <label class="col-sm-2 control-label" [attr.for]="'book'+i">Book Name</label>
+              <div class="col-sm-4">
+                <select [name]="'book'+i" [id]="'book'+i" formControlName="Book_ID" class="form-control" (blur)="logValidationErrors()">
+                  <option *ngFor="let b of Books" [value]="b.Book_ID">{{b.Title}}</option>
+                </select>
+                <span class="help-block" *ngIf="book.get('Book_ID').errors?.required && book.get('Book_ID').touched">
+                  Book Name is Required.
+                </span>
+              </div>
+              <div class="col-sm-6" *ngIf="borrowBookForm.get('BorrowBookDetails').length > 1">
+                <button type="button" class="btn btn-danger btn-sm pull-right" title="Delete Book" (click)="removeBookButtonClick(i)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" type="submit" [disabled]="borrowBookForm.invalid">Save</button>
+    </div>
+  </div>
+</form> -->
+
+
+<form [formGroup]="borrowBookForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <h3 mat-dialog-title>{{pageTitle}}</h3>
+    <mat-dialog-content class="mat-typography">
+      <div class="d-flex">
+          <mat-form-field class="mr-5" [ngClass]="{'has-error':formErrors.Student_ID}">
+              <mat-label for="student">Student</mat-label>
+              <mat-select name="student" id="student" formControlName="Student_ID" (blur)="logValidationErrors()">
+                <mat-option *ngFor="let s of Students" [value]="s.Student_ID">{{s.First_Name}}</mat-option>
+              </mat-select>
+              <!-- <span class="help-block" *ngIf="formErrors.Student_ID">
+                {{formErrors.Student_ID}}
+              </span> -->
+            </mat-form-field>
+            <mat-form-field class="mr-5" [ngClass]="{'has-error':formErrors.CurrentDate}">
+              <mat-label for="currentDate">Current Date</mat-label>
+              <input matInput id="currentDate" name="currentDate" formControlName="CurrentDate" type="text" readonly
+                (blur)="logValidationErrors()">
+              <!-- <span class="help-block" *ngIf="formErrors.CurrentDate">
+                {{formErrors.CurrentDate}}
+              </span> -->
+            </mat-form-field>
+            <mat-form-field [ngClass]="{'has-error':formErrors.ReturnDate}">
+              <mat-label for="returnDate">Return Date</mat-label>
+              <input matInput required id="returnDate" name="returnDate" formControlName="ReturnDate" type="text" bsDatepicker (blur)="logValidationErrors()">
+              <!-- <span class="help-block" *ngIf="formErrors.ReturnDate">
+                {{formErrors.ReturnDate}}
+              </span> -->
+            </mat-form-field>
+      </div>
+      
+
+      <div class="well">
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-4">
+            <button mat-stroked-button color="primary" (click)="addBookButtonClick()" [disabled]="borrowBookForm.get('BorrowBookDetails').invalid">
+              Add Book
+            </button>
+          </div>
+        </div>
+
+        <div formArrayName="BorrowBookDetails" *ngFor="let book of borrowBookForm.get('BorrowBookDetails').controls; let i = index">
+          <hr *ngIf="i>0">
+          <div [formGroupName]="i">
+            <div class="form-group" [ngClass]="{'has-error': book.get('Book_ID').invalid && book.get('Book_ID').touched }">
+              <mat-form-field class="col-sm-6">
+                <mat-label [attr.for]="'book'+i">Book Name</mat-label>
+              
+                <mat-select [attr.name]="'book'+i" [id]="'book'+i" formControlName="Book_ID" (blur)="logValidationErrors()">
+                  <mat-option *ngFor="let b of Books" [value]="b.Book_ID">{{b.Title}}</mat-option>
+                </mat-select>
+                <!-- <span class="help-block" *ngIf="book.get('Book_ID').errors?.required && book.get('Book_ID').touched">
+                  Book Name is Required.
+                </span> -->
+              </mat-form-field>
+              <div class="col-sm-6" *ngIf="borrowBookForm.get('BorrowBookDetails').length > 1">
+                <button type="button" class="btn btn-danger btn-sm pull-right" title="Delete Book" (click)="removeBookButtonClick(i)">
+                  <!-- <span class="glyphicon glyphicon-remove"></span> -->
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-raised-button color="warn" class="mr-2" (click)="closeDialog()" mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="borrowBookForm.invalid">Save</button>
+    </mat-dialog-actions>
+</form>
+

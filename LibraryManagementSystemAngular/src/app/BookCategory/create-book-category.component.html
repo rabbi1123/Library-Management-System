@@ -1,0 +1,39 @@
+<!-- <form #categoryForm="ngForm" (ngSubmit)="saveCategory()">
+<div class="panel panel-primary" *ngIf="bookCategory">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{panelTitle}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group" [class.has-error] = "CategoryName.invalid && CategoryName.touched" 
+    [class.has-success]="CategoryName.valid">
+      <label for="CategoryName" class="control-label">Category Name</label>
+      <input required id="CategoryName" name="CategoryName" [(ngModel)]="bookCategory.Category_Name" type="text" class="form-control" #CategoryName="ngModel">
+      <span class="help-block" *ngIf="CategoryName.invalid && CategoryName.touched">
+        Category Name is Required.
+      </span>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="categoryForm.invalid">Save</button>
+  </div>
+</div>
+</form> -->
+
+<form #categoryForm="ngForm" (ngSubmit)="saveCategory()">
+  <h3 mat-dialog-title>{{panelTitle}}</h3>
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field [class.has-error] = "CategoryName.invalid && CategoryName.touched" 
+          [class.has-success]="CategoryName.valid">
+      <mat-label for="CategoryName">Category Name</mat-label>
+      <input matInput required id="CategoryName" name="CategoryName" [(ngModel)]="bookCategory.Category_Name" type="text" #CategoryName="ngModel">
+        <!-- <span class="help-block" *ngIf="CategoryName.invalid && CategoryName.touched">
+           Category Name is Required.
+        </span> -->
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      <button mat-raised-button color="warn" class="mr-2" (click)="closeDialog()" mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="categoryForm.invalid">Save</button>
+  </mat-dialog-actions>
+</form>
+

@@ -1,0 +1,20 @@
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.head button {
+    height: 50px;
+    outline: none;
+}
+.head h2{
+    /* margin-left: 120px; */
+}
+
+mat-table {
+    width: 100%;
+}
+
+button {
+    outline: none;
+}

@@ -1,0 +1,43 @@
+<!-- <div class="container">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search By Course" [(ngModel)]="searchCourse" />
+  </div>
+  
+  <div *ngFor="let course of filteredCourses">
+    <app-display-course [course]="course" [_searchCourse]="searchCourse" (notifyDelete)="onDeleteNotification($event)">
+    </app-display-course>
+  </div>
+  <div *ngIf="error">
+    {{error}}
+  </div>  
+</div> -->
+
+
+<div class="ml-5 mr-10 my-2 head">
+  <button color="accent" mat-raised-button (click)="openDialog()"><mat-icon class="pr-5">grade</mat-icon> New Book Category</button>
+  <h2 class="display-3">Book Category List</h2>
+  <div></div>
+</div>
+<mat-divider></mat-divider>
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search By Course" [(ngModel)]="searchCourse" />
+</div>
+
+<div class="m-5">
+  <table class="table" *ngIf="filteredCourses && filteredCourses.length">
+    <thead class="thead-dark">
+      <tr>
+        <th>Course Title</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of filteredCourses">
+        <app-display-course [course]="course" [_searchCourse]="searchCourse" (notifyDelete)="onDeleteNotification($event)">
+        </app-display-course>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

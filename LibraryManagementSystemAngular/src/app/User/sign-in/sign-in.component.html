@@ -1,0 +1,28 @@
+<div class="center">
+  <div class="container">
+    <div class="text">Login Form</div>
+    <div *ngIf="isLoginError">
+      <p class="error">Incorrect Username or Password</p>
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="login(email.value,password.value)">
+      <div class="data form-group" [class.has-error]="email.invalid && email.touched" [class.has-success]="email.valid">
+        <label for="email">Email</label>
+        <input class="form-control" required id="email" name="email" ngModel type="text" #email>
+        <span class="help-block" *ngIf="email.invalid && email.touched">
+          Email is Required.
+        </span>
+      </div>
+      <div class="data form-group" [class.has-error]="password.invalid && password.touched" [class.has-success]="password.valid">
+        <label for="password">Password</label>
+        <input class="form-control" required id="password" name="password" ngModel type="password" #password>
+        <span class="help-block" *ngIf="password.invalid && password.touched">
+          Password is Required.
+        </span>
+      </div>
+      <div class="btn">
+        <div class="inner"></div>
+        <button [disabled]="loginForm.invalid" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b9e22524a71463aa369ad61b73df3a2" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="LibraryManagementModel.BookCategory" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BookList" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BorrowBook" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BorrowBookDetail" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Student" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.StudentCourse" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="LibraryManagementModel.FK_BookList_BookCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK_BorrowBookDetails_BookList" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK_BorrowBook_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK_BorrowBookDetails_BorrowBook" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK_Student_StudentCourse" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LibraryManagementModel.AspNetRole" Width="1.5" PointX="7.375" PointY="6.5" />
+        <EntityTypeShape EntityType="LibraryManagementModel.AspNetUserClaim" Width="1.5" PointX="11.875" PointY="7.625" />
+        <EntityTypeShape EntityType="LibraryManagementModel.AspNetUserLogin" Width="1.5" PointX="11.875" PointY="5" />
+        <EntityTypeShape EntityType="LibraryManagementModel.AspNetUser" Width="1.5" PointX="9.625" PointY="5.375" />
+        <AssociationConnector Association="LibraryManagementModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="LibraryManagementModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="LibraryManagementModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

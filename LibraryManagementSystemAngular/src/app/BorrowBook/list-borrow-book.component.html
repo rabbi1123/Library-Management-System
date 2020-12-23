@@ -1,0 +1,110 @@
+<!-- <div class="table-responsive">
+  <table class="table table-bordered" *ngIf="borrowBooks && borrowBooks.length">
+    <thead>
+      <tr class="bg-primary">
+        <th>ID</th>
+        <th>Student ID</th>
+        <th>Current Date</th>
+        <th>Return Date</th>
+        <th>Received Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let borrowBook of borrowBooks">
+        <td>{{borrowBook.BorrowBook_ID}}</td>
+        <td>{{borrowBook.Student.First_Name + borrowBook.Student.Last_Name}}</td>
+        <td>{{borrowBook.CurrentDate}}</td>
+        <td>{{borrowBook.ReturnDate}}</td>
+        <td>{{borrowBook.ReceivedDate}}</td>
+        <td>{{borrowBook.Status}}</td>
+        <td>
+            <div class="btn-toolbar">
+                <button class="btn btn-primary" (click)="editButtonClick(borrowBook.BorrowBook_ID)">Edit</button>
+                <button class="btn btn-primary" (click)="viewButtonClick(borrowBook.BorrowBook_ID)">View</button>
+                <button class="btn btn-primary" (click)="deleteButtonClick(borrowBook.BorrowBook_ID)">Delete</button>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+
+<div class="ml-5 mr-10 my-2 head">
+  <button color="accent" mat-raised-button (click)="openDialog()"><mat-icon class="pr-5">grade</mat-icon> New Book</button>
+  <h2 class="display-3">Borrow Book List</h2>
+  <div></div>
+</div>
+<mat-divider></mat-divider>
+<div class="m-5">
+  <table class="table" *ngIf="borrowBooks && borrowBooks.length">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Student ID</th>
+        <th>Current Date</th>
+        <th>Return Date</th>
+        <th>Received Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let borrowBook of borrowBooks">
+        <td>{{borrowBook.BorrowBook_ID}}</td>
+        <td>{{borrowBook.Student.First_Name + borrowBook.Student.Last_Name}}</td>
+        <td>{{borrowBook.CurrentDate}}</td>
+        <td>{{borrowBook.ReturnDate}}</td>
+        <td>{{borrowBook.ReceivedDate}}</td>
+        <td>{{borrowBook.Status}}</td>
+        <td>
+            <div class="btn-toolbar">
+                <button mat-raised-button color="primary" (click)="editButtonClick(borrowBook.BorrowBook_ID)">Edit</button>
+                <button mat-raised-button color="primary" (click)="viewButtonClick(borrowBook)">View</button>
+                <button mat-raised-button color="primary" (click)="deleteButtonClick(borrowBook.BorrowBook_ID)">Delete</button>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- <div class="mat-elevation-z8 ml-2">
+  <table mat-table *ngIf="dataSource" [dataSource]="dataSource">
+    <ng-container matColumnDef="Student Name">
+      <th mat-header-cell *matHeaderCellDef> Student Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.Student.First_Name + element.Student.Last_Name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Current Date">
+      <th mat-header-cell *matHeaderCellDef> Current Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.CurrentDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Return Date">
+      <th mat-header-cell *matHeaderCellDef> Return Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.ReturnDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Received Date">
+      <th mat-header-cell *matHeaderCellDef> Received Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.ReceivedDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div> -->
+
+
+
+
+
+  
+  

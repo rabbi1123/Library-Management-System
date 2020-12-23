@@ -1,0 +1,131 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a class="btn btn-primary mr-o" (click)="logOut()">Log Out</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+<!-- <h1 class="container">Home page</h1>
+<button type="button" class="btn btn-primary">Primary</button> -->
+
+<!-- <div class="row pt-md-5 mt-md-3 mb-5">
+    <div class="col-xl-3 col-sm-6 p-2">
+        <div class="card card-common">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+                <div class="text-right text-secondary">
+                  <h5>Sales</h5>
+                  <h3>$135,000</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-secondary">
+              <i class="fas fa-sync mr-3"></i>
+              <span>Updated Now</span>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="d-flex justify-content-between m-5">
+    <div class="card card-common">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+            <div class="text-right text-secondary">
+              <h2>Total Book Category</h2>
+              <h3>{{bookCategoryList.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-secondary">
+          
+          <button type="button" class="btn btn-secondary">Book Category List</button>
+        </div>
+    </div>
+
+    <div class="card card-common">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+            <div class="text-right text-secondary">
+              <h2>Total Borrow Book</h2>
+              <h3>{{borrowBookList.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-secondary">
+          
+          <button type="button" class="btn btn-secondary">Borrow Book List</button>
+        </div>
+    </div>
+
+    <div class="card card-common">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+            <div class="text-right text-secondary">
+              <h2>Total Book</h2>
+              <h3>{{bookList.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-secondary">
+          
+          <button type="button" class="btn btn-secondary">Book List</button>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center m-5">
+    <div class="card card-common mr-5">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+            <div class="text-right text-secondary">
+              <h2>Total Student</h2>
+              <h3>{{studentList.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-secondary">
+          
+          <button type="button" class="btn btn-secondary">Student List</button>
+        </div>
+    </div>
+
+    <div class="card card-common">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+            <div class="text-right text-secondary">
+              <h2>Total Student Course</h2>
+              <h3>{{studentCourseList.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-secondary">
+          
+          <button type="button" class="btn btn-secondary">Student Course List</button>
+        </div>
+    </div>
+</div>
+

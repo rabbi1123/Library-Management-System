@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_ID" />
+    </Key>
+    <Property Name="Admin_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BookList">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ISBN_Number" Type="nvarchar(max)" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Author_Name" Type="nvarchar(max)" />
+    <Property Name="Publisher" Type="nvarchar(max)" />
+    <Property Name="Publish_Date" Type="date" />
+    <Property Name="Category" Type="int" />
+  </EntityType>
+  <EntityType Name="BorrowBookList">
+    <Key>
+      <PropertyRef Name="Borrow_book_ID" />
+    </Key>
+    <Property Name="Borrow_book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Book_List" Type="int" />
+    <Property Name="Student_List" Type="int" />
+    <Property Name="Issue_date" Type="date" />
+    <Property Name="Return_Date" Type="date" />
+    <Property Name="Status" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Category_ID" />
+    </Key>
+    <Property Name="Category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course_title" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="StudentList">
+    <Key>
+      <PropertyRef Name="Student_ID" />
+    </Key>
+    <Property Name="Student_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="nvarchar(max)" />
+    <Property Name="Last_Name" Type="nchar" MaxLength="10" />
+    <Property Name="Photo" Type="varbinary(max)" />
+    <Property Name="course" Type="int" />
+  </EntityType>
+  <Association Name="FK_BookList_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="BookList" Type="Self.BookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Category_ID" />
+      </Principal>
+      <Dependent Role="BookList">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookList_BookList">
+    <End Role="BookList" Type="Self.BookList" Multiplicity="0..1" />
+    <End Role="BorrowBookList" Type="Self.BorrowBookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookList">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookList">
+        <PropertyRef Name="Book_List" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookList_StudentList">
+    <End Role="StudentList" Type="Self.StudentList" Multiplicity="0..1" />
+    <End Role="BorrowBookList" Type="Self.BorrowBookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentList">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookList">
+        <PropertyRef Name="Student_List" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentList_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="StudentList" Type="Self.StudentList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="StudentList">
+        <PropertyRef Name="course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryManagementSystemModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookList" EntityType="Self.BookList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BorrowBookList" EntityType="Self.BorrowBookList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentList" EntityType="Self.StudentList" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BookList_Category" Association="Self.FK_BookList_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="BookList" EntitySet="BookList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookList_BookList" Association="Self.FK_BorrowBookList_BookList">
+      <End Role="BookList" EntitySet="BookList" />
+      <End Role="BorrowBookList" EntitySet="BorrowBookList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookList_StudentList" Association="Self.FK_BorrowBookList_StudentList">
+      <End Role="StudentList" EntitySet="StudentList" />
+      <End Role="BorrowBookList" EntitySet="BorrowBookList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentList_Course" Association="Self.FK_StudentList_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="StudentList" EntitySet="StudentList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

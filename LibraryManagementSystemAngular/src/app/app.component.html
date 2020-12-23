@@ -1,0 +1,74 @@
+<!-- <div class="container">
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li>
+        <a routerLinkActive="active" routerLink="home">Home</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="student">List</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="student/create">Create</a>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</div> -->
+
+<!-- <app-sign-in></app-sign-in> -->
+<div *ngIf="token != null">
+  <!-- <mat-toolbar color="primary" class="ar">
+    <div>CodeEvolution</div>
+    <div >
+      <span>Home</span>
+      <span>About</span>
+      <span>Service</span>
+    </div>
+  </mat-toolbar> -->
+  <mat-sidenav-container>
+    
+    <mat-sidenav #sidenav [(mode)]="bar" [(opened)]="open">
+      <app-side-nav-list></app-side-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar>
+        <mat-toolbar-row fxLayoutAlign="space-between center">
+          <div>
+            <a href="#" class="bo">Library Management</a>
+          </div>
+          <div>
+            <button *ngIf="device == false" class="co" (click)="logout()">
+              <span class="but">Logout</span>
+            </button>
+            <button mat-icon-button class="bo">
+              <mat-icon *ngIf="device == true" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+            </button>
+            
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+          </div>
+        </mat-toolbar-row>
+        <mat-toolbar-row fxHide.gt-xs>
+          <div>
+            <button mat-icon-button (click)="sidenav.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <!-- <main>
+        <router-outlet></router-outlet>
+      </main> -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+</div>
+
+<div *ngIf="token == null">
+  <router-outlet></router-outlet>
+</div>
+
+
+

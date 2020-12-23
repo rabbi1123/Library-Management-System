@@ -1,0 +1,20 @@
+{
+  "Students": [
+    {
+      "id": 1,
+      "firstName": "Md. Mosfikur",
+      "lastName": "Rahman",
+      "contactPreference": "email",
+      "email": "Mushfikur80@gmail.com",
+      "phone": "564654654"
+    },
+    {
+      "id": 2,
+      "firstName": "Roton",
+      "lastName": "Shaha",
+      "contactPreference": "email",
+      "email": "roton80@gmail.com",
+      "phone": "565465465498"
+    }
+  ]
+}

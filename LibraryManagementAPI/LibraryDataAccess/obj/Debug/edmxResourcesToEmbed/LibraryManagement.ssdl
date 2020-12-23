@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookCategory">
+    <Key>
+      <PropertyRef Name="BookCategory_ID" />
+    </Key>
+    <Property Name="BookCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookList">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Author" Type="nvarchar(max)" />
+    <Property Name="Category_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BorrowBook">
+    <Key>
+      <PropertyRef Name="BorrowBook_ID" />
+    </Key>
+    <Property Name="BorrowBook_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="int" Nullable="false" />
+    <Property Name="CurrentDate" Type="datetime" />
+    <Property Name="ReturnDate" Type="datetime" />
+    <Property Name="ReceivedDate" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BorrowBookDetails">
+    <Key>
+      <PropertyRef Name="BorrowBookDetails_ID" />
+    </Key>
+    <Property Name="BorrowBookDetails_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Book_ID" Type="int" Nullable="false" />
+    <Property Name="BorrowBook_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Student_ID" />
+    </Key>
+    <Property Name="Student_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="nvarchar(max)" />
+    <Property Name="Last_Name" Type="nvarchar(max)" />
+    <Property Name="ContactPreference" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="Photo" Type="varbinary(max)" />
+    <Property Name="Course_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="StudentCourse">
+    <Key>
+      <PropertyRef Name="StudentCourse_ID" />
+    </Key>
+    <Property Name="StudentCourse_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BookList_BookCategory">
+    <End Role="BookCategory" Type="Self.BookCategory" Multiplicity="1" />
+    <End Role="BookList" Type="Self.BookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookCategory">
+        <PropertyRef Name="BookCategory_ID" />
+      </Principal>
+      <Dependent Role="BookList">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBook_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="BorrowBook" Type="Self.BorrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="BorrowBook">
+        <PropertyRef Name="Student_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookDetails_BookList">
+    <End Role="BookList" Type="Self.BookList" Multiplicity="1" />
+    <End Role="BorrowBookDetails" Type="Self.BorrowBookDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookList">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookDetails">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookDetails_BorrowBook">
+    <End Role="BorrowBook" Type="Self.BorrowBook" Multiplicity="1" />
+    <End Role="BorrowBookDetails" Type="Self.BorrowBookDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BorrowBook">
+        <PropertyRef Name="BorrowBook_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookDetails">
+        <PropertyRef Name="BorrowBook_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_StudentCourse">
+    <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentCourse">
+        <PropertyRef Name="StudentCourse_ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryManagementModelStoreContainer">
+    <EntitySet Name="BookCategory" EntityType="Self.BookCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookList" EntityType="Self.BookList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BorrowBook" EntityType="Self.BorrowBook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BorrowBookDetails" EntityType="Self.BorrowBookDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentCourse" EntityType="Self.StudentCourse" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BookList_BookCategory" Association="Self.FK_BookList_BookCategory">
+      <End Role="BookCategory" EntitySet="BookCategory" />
+      <End Role="BookList" EntitySet="BookList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBook_Student" Association="Self.FK_BorrowBook_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="BorrowBook" EntitySet="BorrowBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookDetails_BookList" Association="Self.FK_BorrowBookDetails_BookList">
+      <End Role="BookList" EntitySet="BookList" />
+      <End Role="BorrowBookDetails" EntitySet="BorrowBookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookDetails_BorrowBook" Association="Self.FK_BorrowBookDetails_BorrowBook">
+      <End Role="BorrowBook" EntitySet="BorrowBook" />
+      <End Role="BorrowBookDetails" EntitySet="BorrowBookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_StudentCourse" Association="Self.FK_Student_StudentCourse">
+      <End Role="StudentCourse" EntitySet="StudentCourse" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

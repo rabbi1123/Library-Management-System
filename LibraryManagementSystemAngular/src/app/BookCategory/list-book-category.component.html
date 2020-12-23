@@ -1,0 +1,39 @@
+<div class="ml-5 mr-10 my-2 head">
+  <button color="accent" mat-raised-button (click)="openDialog()"><mat-icon class="pr-5">grade</mat-icon> New Book Category</button>
+  <h2 class="display-3">Book Category List</h2>
+  <div></div>
+</div>
+<mat-divider></mat-divider>
+
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search By Category" style="width:300px" [(ngModel)]="searchBook">
+</div>
+
+<div class="m-5">
+  <table class="table" *ngIf="filteredcategories && filteredcategories.length">
+    <thead class="thead-dark">
+      <tr>
+        <th>Category Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of filteredcategories">
+          <app-display-book-category [bookCategory]="category" [searchBook]="searchBook"
+              (notifyDelete)="onDeleteNotification($event)">
+          </app-display-book-category>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div *ngFor="let category of filteredcategories">
+
+  <app-display-book-category [bookCategory]="category" [searchBook]="searchBook"
+         (notifyDelete)="onDeleteNotification($event)">
+  </app-display-book-category>
+
+</div>
+<div *ngIf="error">
+  {{ error }}
+</div> -->

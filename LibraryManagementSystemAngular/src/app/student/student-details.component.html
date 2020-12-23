@@ -1,0 +1,72 @@
+<!-- <div class="panel panel-primary" *ngIf="student">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{student.Student_ID}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-6">
+          Student First Name
+        </div>
+        <div class="col-xs-6">
+          : {{student.First_Name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Student Last Name
+        </div>
+        <div class="col-xs-6">
+          : {{student.Last_Name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Student Contact Preference
+        </div>
+        <div class="col-xs-6">
+          : {{student.ContactPreference}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Student Email
+        </div>
+        <div class="col-xs-6">
+          : {{student.Email}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Student Phone Number
+        </div>
+        <div class="col-xs-6">
+          : {{student.Phone}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <a class="btn btn-primary" [routerLink]="['/student']" queryParamsHandling="preserve">Back To List</a>
+  </div>
+</div> -->
+
+
+<div class="p-5">
+  <div class="mb-3">
+    <h2>Student Name</h2>
+    <h3 class="m-6">{{student.First_Name + student.Last_Name}}</h3>
+  </div>
+  <div class="mb-3">
+    <h2>Student Contact Preference</h2>
+    <h3 class="m-6">{{student.ContactPreference}}</h3>
+  </div>
+  <div class="mb-3">
+    <h2>Student Email</h2>
+    <h3 class="m-6">{{student.Email}}</h3>
+  </div>
+  <div>
+    <h2>Student Phone Number</h2>
+    <h3 class="m-6">{{student.Phone}}</h3>
+  </div>
+</div>

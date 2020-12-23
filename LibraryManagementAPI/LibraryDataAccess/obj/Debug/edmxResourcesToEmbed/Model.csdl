@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BookCategory">
+    <Key>
+      <PropertyRef Name="BookCategory_ID" />
+    </Key>
+    <Property Name="BookCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BookLists" Relationship="Self.FK_BookList_BookCategory" FromRole="BookCategory" ToRole="BookList" />
+  </EntityType>
+  <EntityType Name="BookList">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BookCategory" Relationship="Self.FK_BookList_BookCategory" FromRole="BookList" ToRole="BookCategory" />
+    <NavigationProperty Name="BorrowBookDetails" Relationship="Self.FK_BorrowBookDetails_BookList" FromRole="BookList" ToRole="BorrowBookDetails" />
+  </EntityType>
+  <EntityType Name="BorrowBook">
+    <Key>
+      <PropertyRef Name="BorrowBook_ID" />
+    </Key>
+    <Property Name="BorrowBook_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Student_ID" Type="Int32" Nullable="false" />
+    <Property Name="CurrentDate" Type="DateTime" Precision="3" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+    <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_BorrowBook_Student" FromRole="BorrowBook" ToRole="Student" />
+    <NavigationProperty Name="BorrowBookDetails" Relationship="Self.FK_BorrowBookDetails_BorrowBook" FromRole="BorrowBook" ToRole="BorrowBookDetails" />
+  </EntityType>
+  <EntityType Name="BorrowBookDetail">
+    <Key>
+      <PropertyRef Name="BorrowBookDetails_ID" />
+    </Key>
+    <Property Name="BorrowBookDetails_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Book_ID" Type="Int32" Nullable="false" />
+    <Property Name="BorrowBook_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BookList" Relationship="Self.FK_BorrowBookDetails_BookList" FromRole="BorrowBookDetails" ToRole="BookList" />
+    <NavigationProperty Name="BorrowBook" Relationship="Self.FK_BorrowBookDetails_BorrowBook" FromRole="BorrowBookDetails" ToRole="BorrowBook" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Student_ID" />
+    </Key>
+    <Property Name="Student_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPreference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Course_ID" Type="Int32" />
+    <NavigationProperty Name="BorrowBooks" Relationship="Self.FK_BorrowBook_Student" FromRole="Student" ToRole="BorrowBook" />
+    <NavigationProperty Name="StudentCourse" Relationship="Self.FK_Student_StudentCourse" FromRole="Student" ToRole="StudentCourse" />
+  </EntityType>
+  <EntityType Name="StudentCourse">
+    <Key>
+      <PropertyRef Name="StudentCourse_ID" />
+    </Key>
+    <Property Name="StudentCourse_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_StudentCourse" FromRole="StudentCourse" ToRole="Student" />
+  </EntityType>
+  <Association Name="FK_BookList_BookCategory">
+    <End Role="BookCategory" Type="Self.BookCategory" Multiplicity="1" />
+    <End Role="BookList" Type="Self.BookList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookCategory">
+        <PropertyRef Name="BookCategory_ID" />
+      </Principal>
+      <Dependent Role="BookList">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookDetails_BookList">
+    <End Role="BookList" Type="Self.BookList" Multiplicity="1" />
+    <End Role="BorrowBookDetails" Type="Self.BorrowBookDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookList">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookDetails">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBook_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="BorrowBook" Type="Self.BorrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="BorrowBook">
+        <PropertyRef Name="Student_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BorrowBookDetails_BorrowBook">
+    <End Role="BorrowBook" Type="Self.BorrowBook" Multiplicity="1" />
+    <End Role="BorrowBookDetails" Type="Self.BorrowBookDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BorrowBook">
+        <PropertyRef Name="BorrowBook_ID" />
+      </Principal>
+      <Dependent Role="BorrowBookDetails">
+        <PropertyRef Name="BorrowBook_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_StudentCourse">
+    <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentCourse">
+        <PropertyRef Name="StudentCourse_ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookCategories" EntityType="Self.BookCategory" />
+    <EntitySet Name="BookLists" EntityType="Self.BookList" />
+    <EntitySet Name="BorrowBooks" EntityType="Self.BorrowBook" />
+    <EntitySet Name="BorrowBookDetails" EntityType="Self.BorrowBookDetail" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="StudentCourses" EntityType="Self.StudentCourse" />
+    <AssociationSet Name="FK_BookList_BookCategory" Association="Self.FK_BookList_BookCategory">
+      <End Role="BookCategory" EntitySet="BookCategories" />
+      <End Role="BookList" EntitySet="BookLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookDetails_BookList" Association="Self.FK_BorrowBookDetails_BookList">
+      <End Role="BookList" EntitySet="BookLists" />
+      <End Role="BorrowBookDetails" EntitySet="BorrowBookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBook_Student" Association="Self.FK_BorrowBook_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="BorrowBook" EntitySet="BorrowBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BorrowBookDetails_BorrowBook" Association="Self.FK_BorrowBookDetails_BorrowBook">
+      <End Role="BorrowBook" EntitySet="BorrowBooks" />
+      <End Role="BorrowBookDetails" EntitySet="BorrowBookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_StudentCourse" Association="Self.FK_Student_StudentCourse">
+      <End Role="StudentCourse" EntitySet="StudentCourses" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <EntitySet Name="AspNetRoles" EntityType="LibraryManagementModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="LibraryManagementModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="LibraryManagementModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="LibraryManagementModel.AspNetUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="LibraryManagementModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="LibraryManagementModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="LibraryManagementModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="LibraryManagementModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="LibraryManagementModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="LibraryManagementModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="LibraryManagementModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="LibraryManagementModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="LibraryManagementModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="LibraryManagementModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="LibraryManagementModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="LibraryManagementModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="LibraryManagementModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="LibraryManagementModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="LibraryManagementModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+</Schema>

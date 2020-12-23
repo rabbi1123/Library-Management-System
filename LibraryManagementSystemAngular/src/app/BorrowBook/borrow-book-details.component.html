@@ -1,0 +1,76 @@
+<!-- <div class="panel panel-primary" *ngIf="borrowBook">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{borrowBook.BorrowBook_ID}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-6">
+          Student Name
+        </div>
+        <div class="col-xs-6">
+          : {{borrowBook.Student.First_Name + borrowBook.Student.Last_Name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Current Date
+        </div>
+        <div class="col-xs-6">
+          : {{borrowBook.CurrentDate}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Return Date
+        </div>
+        <div class="col-xs-6">
+          : {{borrowBook.ReturnDate}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Received Date
+        </div>
+        <div class="col-xs-6">
+          : {{borrowBook.ReceivedDate}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          Student Status
+        </div>
+        <div class="col-xs-6">
+          : {{borrowBook.Status}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <a class="btn btn-primary" [routerLink]="['/BorrowBook']" queryParamsHandling="preserve">Back To List</a>
+  </div>
+</div>
+ -->
+
+<div class="p-5">
+  <div class="mb-3">
+    <h3>Student Name</h3>
+    <h2 class="m-6">{{borrowBook.Student.First_Name + borrowBook.Student.Last_Name}}</h2>
+  </div>
+  <div class="mb-3">
+    <h3>Current Date</h3>
+    <h2 class="m-6">{{borrowBook.CurrentDate}}</h2>
+  </div>
+  <div class="mb-3">
+    <h3>Return Date</h3>
+    <h2 class="m-6">{{borrowBook.ReturnDate}}</h2>
+  </div>
+  <div class="mb-3">
+    <h3>Received Date</h3>
+    <h2 class="m-6">{{borrowBook.ReceivedDate}}</h2>
+  </div>
+  <div>
+    <h3>Student Status</h3>
+    <h2 class="m-6">{{borrowBook.Status}}</h2>
+  </div>
+</div>
